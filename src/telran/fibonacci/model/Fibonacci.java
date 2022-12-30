@@ -23,7 +23,8 @@ public class Fibonacci implements Iterable<Integer> {
 
 		return new Iterator<Integer>() {
 			private int currPos = 0;
-			private int arr[] = new int[getQuantity()];
+			private int arr[] = {1,1};
+			
 
 			@Override
 			public boolean hasNext() {
@@ -32,17 +33,13 @@ public class Fibonacci implements Iterable<Integer> {
 
 			@Override
 			public Integer next() {
-				int currentNumber;
-				try {
-					currentNumber = arr[currPos - 1] + arr[currPos - 2];
-
-				} catch (ArrayIndexOutOfBoundsException e) {
-					currentNumber = 1;
-				}
-
-				arr[currPos] = currentNumber;
+				int nextNum = arr[0] + arr[1];
+				int current = arr[currPos %2];
+				arr[currPos % 2] = nextNum;
 				currPos++;
-				return currentNumber;
+				return current;
+				
+
 			}
 		};
 	}
